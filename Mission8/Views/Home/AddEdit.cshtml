@@ -1,0 +1,79 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model Mission8.Models.Task
+
+@{
+    ViewData["Title"] = "Add/Edit Task";
+}
+
+<h2 class="mb-4">@(Model?.Id == 0 ? "Add" : "Edit") Task</h2>
+
+<div class="container">
+    <form asp-action="SaveTask" method="post">
+        <div class="row">
+            <!-- Task Name -->
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Name">Task Name</label>
+                    <input asp-for="Name" class="form-control" required />
+                </div>
+            </div>
+
+            <!-- Due Date -->
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="DueDate">Due Date</label>
+                    <input asp-for="DueDate" type="date" class="form-control" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <!-- Quadrant -->
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Quadrant">Quadrant</label>
+                    <select asp-for="Quadrant" class="form-control">
+                        <option value="">-- Select a Quadrant --</option>
+                        <option value="1">Quadrant I - Important/Urgent</option>
+                        <option value="2">Quadrant II - Important/Not Urgent</option>
+                        <option value="3">Quadrant III - Not Important/Urgent</option>
+                        <option value="4">Quadrant IV - Not Important/Not Urgent</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Category -->
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="CategoryId">Category</label>
+                    <select asp-for="CategoryId" asp-items="ViewBag.Categories" class="form-control">
+                        <option value="">-- Select a Category --</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <!-- Completed Checkbox -->
+            <div class="col-md-12">
+                <div class="form-check">
+                    <input asp-for="Completed" class="form-check-input" />
+                    <label asp-for="Completed" class="form-check-label">Completed</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="row mt-4">
+            <div class="col-md-12 text-center">
+                <button type="submit" class="btn btn-primary">Save Task</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+
