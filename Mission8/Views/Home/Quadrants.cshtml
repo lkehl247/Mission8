@@ -1,0 +1,40 @@
+@model List<Mission8.Models.Task>
+
+@{
+    ViewData["Title"] = "Task Quadrants";
+}
+
+<h1 class="text-center">Task Quadrants</h1>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Quadrant I (Important / Urgent)</h3>
+            @foreach (var task in Model.Where(t => t.Quadrant == 1))
+            {
+                <partial name="_TaskPartial" model="task" />
+            }
+        </div>
+        <div class="col-md-6">
+            <h3>Quadrant II (Important / Not Urgent)</h3>
+            @foreach (var task in Model.Where(t => t.Quadrant == 2))
+            {
+                <partial name="_TaskPartial" model="task" />
+            }
+        </div>
+        <div class="col-md-6">
+            <h3>Quadrant III (Not Important / Urgent)</h3>
+            @foreach (var task in Model.Where(t => t.Quadrant == 3))
+            {
+                <partial name="_TaskPartial" model="task" />
+            }
+        </div>
+        <div class="col-md-6">
+            <h3>Quadrant IV (Not Important / Not Urgent)</h3>
+            @foreach (var task in Model.Where(t => t.Quadrant == 4))
+            {
+                <partial name="_TaskPartial" model="task" />
+            }
+        </div>
+    </div>
+</div>
